@@ -32,7 +32,7 @@ const Navbar = () => {
     return (
         <NavbarContainer>
             <div className="navbar__wrap">
-                <Link to="/index">
+                <Link to="/">
                     <span className="button--home">
                         Home
                 </span>
