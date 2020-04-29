@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { connect } from "react-redux";
+import { updateVersion } from "../reducers/cart";
+
 const RadioGroupContainer = styled.div`
     position: relative;
 
@@ -60,17 +63,31 @@ const RadioGroupContainer = styled.div`
     }
 `
 
-const RadioGroup = ({ id, version }) => {
+const RadioGroup = ({ id, defaultValue, updateVersion }) => {
     return (
         <RadioGroupContainer>
             <div className="radio__item">
-                <input className="input__item" type="radio" name={`${id}-color`} id={`${id}-standard`} defaultChecked={version === 'standard'} />
+                <input
+                    className="input__item"
+                    type="radio"
+                    name={`${id}-color`}
+                    id={`${id}-standard`}
+                    defaultChecked={defaultValue === 'standard'}
+                    onClick={() => updateVersion('standard')}
+                />
                 <label className="label__item" htmlFor={`${id}-standard`}>
                     Standard
             </label>
             </div>
             <div className="radio__item">
-                <input className="input__item" type="radio" name={`${id}-color`} id={`${id}-long-range`} defaultChecked={version === 'long-range'} />
+                <input
+                    className="input__item"
+                    type="radio"
+                    name={`${id}-color`}
+                    id={`${id}-long-range`
+                    } defaultChecked={defaultValue === 'long-range'}
+                    onClick={() => updateVersion('long-range')}
+                />
                 <label className="label__item" htmlFor={`${id}-long-range`}>
                     Long Range
             </label>
@@ -78,4 +95,9 @@ const RadioGroup = ({ id, version }) => {
         </RadioGroupContainer>
     )
 }
-export default RadioGroup
+export default connect(
+    null,
+    dispatch => ({
+        updateVersion: (version) => dispatch(updateVersion(version))
+    })
+)(RadioGroup)
