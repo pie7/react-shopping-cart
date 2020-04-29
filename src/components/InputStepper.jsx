@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import Button from "./Button";
 
 const InputStepperContainer = styled.div`
 
@@ -42,9 +42,19 @@ const InputStepper = () => {
     const [qty, setQty] = useState(1)
     return (
         <InputStepperContainer>
-            <button className="stepper__button" onClick={() => { qty > 1 && setQty(qty - 1) }}>－</button>
-            <input className="stepper__input" type="number" value={qty} />
-            <button className="stepper__button" onClick={() => { qty < 5 && setQty(qty + 1) }}>＋</button>
+            <Button
+                className="stepper__button"
+                clickEvent={() => { qty > 1 && setQty(qty - 1) }}
+            >
+                －
+            </Button>
+            <input className="stepper__input" type="number" value={qty} readOnly />
+            <Button
+                className="stepper__button"
+                clickEvent={() => { qty < 5 && setQty(qty + 1) }}
+            >
+                ＋
+            </Button>
         </InputStepperContainer>
     )
 }

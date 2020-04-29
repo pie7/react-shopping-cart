@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Button from "./Button";
+import cart_48x48 from "../assets/shopping_cart_white_48x48.png"
 
 const NavbarContainer = styled.div`
     display: felx;
@@ -14,37 +17,55 @@ const NavbarContainer = styled.div`
         flex:0 0 60%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         min-width: 960px;
     }
 
-    .button--home {
-        color: #fff;
-        cursor: pointer;
+    .navbar {
+
+        &__cart {
+            display: flex;
+            align-items: center;
+        }
     }
 
-    .button--shopping-cart {
-        color: #fff;
-        cursor: pointer;
+    .button--home {
+        font-size: 18px;
+    }
+
+    .button--cart {
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 32px;
+        height: 32px;
+        width: 32px;
     }
 `
 
-const Navbar = () => {
+const Navbar = ({ cartItems }) => {
     return (
         <NavbarContainer>
             <div className="navbar__wrap">
                 <Link to="/">
-                    <span className="button--home">
+                    <Button className="button--home">
                         Home
-                </span>
+                    </Button>
                 </Link>
                 <Link to="/cart">
-                    <span className="button--shopping-cart">
-                        <span role="img" aria-label="111" >&#128722;</span>
-                        <span>Cart</span>
+                    <span className="navbar__cart">
+                        <Button
+                            className="button--cart"
+                        >
+                            {cartItems.length}
+                        </Button>
+                        <img src={cart_48x48} alt="cart" />
                     </span>
                 </Link>
             </div>
         </NavbarContainer>
     )
 }
-export default Navbar
+export default connect(
+    state => ({
+        cartItems: state.cartItems
+    })
+)(Navbar)

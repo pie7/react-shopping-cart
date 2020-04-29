@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import ProductPopup from "./ProductPopup";
+import { connect } from "react-redux";
+import { toggleModal } from "../reducers/cart";
+import Button from "./Button";
 
 const ModalContainer = styled.div`
     display: ${ props => props.display };
@@ -22,6 +23,7 @@ const ModalContainer = styled.div`
         }
 
         &__body {
+            position: relative;
             width: 960px;
             height: 600px;
             padding: 16px 32px 24px;
@@ -32,33 +34,44 @@ const ModalContainer = styled.div`
         }
     }
 
+    .button--close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
 `
 
-const Modal = ({ imageLink, views, user, isModalOpen, }) => {
+const Modal = ({ isModalOpen, children, toggleModal }) => {
     return (
         <ModalContainer display={isModalOpen ? 'block' : 'none'}>
             <div className="modal__wrap">
                 <div className="modal__body">
-                    <ProductPopup
-                        imageLink={imageLink}
-                        views={views}
-                        user={user}
-                        desc={desc}
-                    />
+                    <Button
+                        className="button--close"
+                        clickEvent={() => { toggleModal(null, isModalOpen) }}
+                    >
+                        ✕
+                    </Button>
+                    {children}
                 </div>
             </div>
         </ModalContainer>
     )
 }
 
-export default Modal
-
 Modal.defaultProps = {
-    isModalOpen: false
+    isModalOpen: false,
+    children: null
 }
 
-const desc = `
-It is a long established fact that a reader will be
- distracted by the readable content of a page
- when looking at its layout. The point of using Lorem
- `
+export default connect(
+    state => ({
+        isModalOpen: state.isModalOpen
+    }),
+    dispatch => ({
+        toggleModal: (currentClickID, isModalOpen) => dispatch(toggleModal(currentClickID, isModalOpen))
+    })
+)(Modal)
