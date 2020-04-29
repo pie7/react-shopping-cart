@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+
+import ProductList from "./components/ProductList";
+import Navbar from "./components/Navbar";
+import Cart from "./components/Cart";
+import './App.scss';
+
+
+const AppWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrap>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <ProductList />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+        </Switch>
+      </Router>
+    </AppWrap>
   );
 }
-
 export default App;
