@@ -76,8 +76,8 @@ const ProductPopup = ({ imageLink, price, title, desc, addToCart, id, version, p
                         <Price
                             amount={price}
                             color={'#8E2DE2'}
-                            marginBottom={'16'}
-                            fontSize={'24'}
+                            marginBottom={16}
+                            fontSize={24}
                         />
                         <Button
                             className="button--add-to-cart"

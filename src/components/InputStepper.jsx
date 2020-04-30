@@ -25,7 +25,6 @@ const InputStepperContainer = styled.div`
             font-size: 16px;
             width: 32px;
             height: 32px;
-            cursor: pointer;
             border-radius: 50%;
             background-color: #fff;
             color: rgba(0,0,0 ,.54);

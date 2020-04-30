@@ -40,6 +40,7 @@ const ModalContainer = styled.div`
         right: 16px;
         font-size: 24px;
         font-weight: 700;
+        color: #212121;
     }
 
 `
