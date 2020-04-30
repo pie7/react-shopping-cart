@@ -78,7 +78,7 @@ const Cart = ({ cartItems, deleteCartItem }) => {
                                 <RadioGroup defaultValue={product.version} id={product.id} />
                             </div>
                             <div className="product__qty">
-                                <InputStepper />
+                                <InputStepper id={product.id}/>
                             </div>
                             <Price amount={product.price} />
                             <div className="product__delete" >

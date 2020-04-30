@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { connect } from "react-redux";
 import { updateVersion } from "../reducers/product";
+import { updateItemVersion } from "../reducers/cart";
 
 const RadioGroupContainer = styled.div`
     position: relative;
@@ -63,7 +64,7 @@ const RadioGroupContainer = styled.div`
     }
 `
 
-const RadioGroup = ({ id, defaultValue, updateVersion }) => {
+const RadioGroup = ({ id, defaultValue, updateVersion, updateItemVersion }) => {
     return (
         <RadioGroupContainer>
             <div className="radio__item">
@@ -73,7 +74,7 @@ const RadioGroup = ({ id, defaultValue, updateVersion }) => {
                     name={`${id}-color`}
                     id={`${id}-standard`}
                     defaultChecked={defaultValue === 'standard'}
-                    onClick={() => updateVersion('standard')}
+                    onClick={() => { updateVersion('standard'); updateItemVersion(id, 'standard') }}
                 />
                 <label className="label__item" htmlFor={`${id}-standard`}>
                     Standard
@@ -86,7 +87,7 @@ const RadioGroup = ({ id, defaultValue, updateVersion }) => {
                     name={`${id}-color`}
                     id={`${id}-long-range`
                     } defaultChecked={defaultValue === 'long-range'}
-                    onClick={() => updateVersion('long-range')}
+                    onClick={() => { updateVersion('long-range'); updateItemVersion(id, 'long-range') }}
                 />
                 <label className="label__item" htmlFor={`${id}-long-range`}>
                     Long Range
@@ -98,6 +99,7 @@ const RadioGroup = ({ id, defaultValue, updateVersion }) => {
 export default connect(
     null,
     dispatch => ({
-        updateVersion: (version) => dispatch(updateVersion(version))
+        updateVersion: (version) => dispatch(updateVersion(version)),
+        updateItemVersion: (id, cartItemVersion) => dispatch(updateItemVersion(id, cartItemVersion))
     })
 )(RadioGroup)

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
+import { updateQTY } from "../reducers/cart";
 import Button from "./Button";
 
 const InputStepperContainer = styled.div`
@@ -37,24 +39,28 @@ const InputStepperContainer = styled.div`
     }
 `
 
-const InputStepper = () => {
-    const [qty, setQty] = useState(1)
+const InputStepper = ({ id, qty, updateQTY }) => {
     return (
         <InputStepperContainer>
             <Button
                 className="stepper__button"
-                clickEvent={() => { qty > 1 && setQty(qty - 1) }}
+                clickEvent={() => { qty > 1 && updateQTY(id, qty - 1) }}
             >
                 －
             </Button>
             <input className="stepper__input" type="number" value={qty} readOnly />
             <Button
                 className="stepper__button"
-                clickEvent={() => { qty < 5 && setQty(qty + 1) }}
+                clickEvent={() => { qty < 5 && updateQTY(id, qty + 1) }}
             >
                 ＋
             </Button>
         </InputStepperContainer>
     )
 }
-export default InputStepper
+export default connect(
+    state => ({ qty: state.cart.qty }),
+    dispatch => ({
+        updateQTY: (id, qty) => dispatch(updateQTY(id, qty))
+    })
+)(InputStepper)
