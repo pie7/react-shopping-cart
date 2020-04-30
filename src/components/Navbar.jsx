@@ -55,7 +55,7 @@ const Navbar = ({ cartItems }) => {
                         <Button
                             className="button--cart"
                         >
-                            {cartItems.length}
+                            {cartItems && cartItems.length}
                         </Button>
                         <img src={cart_48x48} alt="cart" />
                     </span>
@@ -66,6 +66,6 @@ const Navbar = ({ cartItems }) => {
 }
 export default connect(
     state => ({
-        cartItems: state.cartItems
+        cartItems: state.cart.cartItems
     })
 )(Navbar)

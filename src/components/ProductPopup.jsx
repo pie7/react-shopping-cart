@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { addToCart } from "../reducers/cart";
-import { toggleModal } from "../reducers/cart";
+import { toggleModal, updateVersion } from "../reducers/product";
 import RadioGroup from "./RadioGroup";
 import Price from "./Price";
 import Button from "./Button";
@@ -94,13 +94,13 @@ const ProductPopup = ({ imageLink, price, title, desc, addToCart, id, version, p
 
 export default connect(
     state => ({
-        isModalOpen: state.isModalOpen,
-        version: state.version
+        version: state.product.version
     }),
     dispatch => ({
         addToCart: (id, title, price, previewURL, version) => {
             dispatch(addToCart(id, title, price, previewURL, version))
             dispatch(toggleModal(null, true))
+            dispatch(updateVersion('standard'))
         }
     })
 )(ProductPopup)

@@ -110,7 +110,7 @@ Cart.defaultProps = {
 }
 export default connect(
     state => ({
-        cartItems: state.cartItems
+        cartItems: state.cart.cartItems
     }),
     dispatch =>({
         deleteCartItem: (id) => dispatch(deleteCartItem(id))

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { toggleModal } from "../reducers/cart";
+import { toggleModal } from "../reducers/product";
 import Button from "./Button";
 
 const ModalContainer = styled.div`
@@ -70,7 +70,7 @@ Modal.defaultProps = {
 
 export default connect(
     state => ({
-        isModalOpen: state.isModalOpen
+        isModalOpen: state.product.isModalOpen
     }),
     dispatch => ({
         toggleModal: (currentClickID, isModalOpen) => dispatch(toggleModal(currentClickID, isModalOpen))

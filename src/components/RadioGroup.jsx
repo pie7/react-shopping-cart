@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { connect } from "react-redux";
-import { updateVersion } from "../reducers/cart";
+import { updateVersion } from "../reducers/product";
 
 const RadioGroupContainer = styled.div`
     position: relative;

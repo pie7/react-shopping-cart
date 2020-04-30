@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { toggleModal } from "../reducers/cart";
+import { toggleModal } from "../reducers/product";
 import Price from "./Price";
 import Button from "./Button";
 
@@ -64,7 +64,7 @@ const Card = ({ id, title, imgURL, alt, price, isModalOpen, toggleModal }) => {
 }
 export default connect(
     state => ({
-        isModalOpen: state.isModalOpen
+        isModalOpen: state.product.isModalOpen
     }),
     dispatch => ({
         toggleModal: (currentClickID, isModalOpen) => dispatch(toggleModal(currentClickID, isModalOpen))

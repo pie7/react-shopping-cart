@@ -1,6 +1,6 @@
 import { put, call, fork } from "redux-saga/effects";
 import axios from 'axios'
-import { FETCH_PRODUCT } from "../reducers/cart";
+import { FETCH_PRODUCT } from "../reducers/product";
 
 const keyword = "lamborghini+car"
 
