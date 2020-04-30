@@ -6,10 +6,97 @@ Simple Shopping Cart with Product Page
 
 ### `Features`
 
-- ADD Product
+- Product Page
+- Cart Page
+- Add/Update/Delete Product
+
+### `Web APIs`
+
+- [Pixabay](https://pixabay.com/)
+
 
 ### `Tools`
 
 - React-Route
 - Redux
 - Styled Components
+
+
+### `Doc`
+
+```js
+import Button from './Button'
+```
+Name       | Type     | Default
+---------- | -------- | -------
+className  | string   |
+clickEvent | func     |
+children   | node     |
+
+
+```js
+import Card from './Card'
+```
+Name       | Type     | Default
+---------- | -------- | -------
+id         | number   |
+title      | string   |
+imgURL     | string   |
+alt        | string   |
+price      | number   |
+isModalOpen| bool     |
+toggleModal| func     |
+
+
+```js
+import Modal from './Modal'
+```
+Name       | Type     | Default
+---------- | -------- | -------
+className  | string   |
+clickEvent | func     |
+children   | node     |
+
+
+```js
+import Navbar from './Navbar'
+```
+Name       | Type     | Default
+---------- | -------- | -------
+cartItems  | array    |
+
+
+```js
+import Price from './Price'
+```
+Name        | Type     | Default
+----------- | -------- | -------
+amount      | number   |
+color       | string   |
+fontSize    | number   |
+marginBottom| number   |
+
+
+```js
+import RadioGroup from './RadioGroup'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+id           | number   |
+updateVersion| func     |
+defaultValue | string   |
+
+
+```js
+import ProductPopup from './ProductPopup'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+id           | number   |
+imageLink    | string   |
+previewURL   | string   |
+price        | number   |
+title        | string   |
+desc         | string   |
+addToCart    | func     |
+version      | string   |
