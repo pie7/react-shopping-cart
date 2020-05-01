@@ -69,11 +69,12 @@ const initialState = {
 // Reducer
 export default function cartReducer(state = initialState, action = {}) {
     switch (action.type) {
-
         case ADD_TO_CART:
+            const newCartItems = state.cartItems.concat(action.payload)
+            console.log()
             return {
                 ...state,
-                cartItems: state.cartItems.concat(action.payload),
+                cartItems: [...new Map(newCartItems.map(item => [item.id, item])).values()]
             }
         case UPDATE_QTY:
             return {
