@@ -39,19 +39,20 @@ const InputStepperContainer = styled.div`
     }
 `
 
-const InputStepper = ({ id, qty, updateQTY }) => {
+const InputStepper = ({ id, updateQTY }) => {
+    const [qty, setQty] = useState(1)
     return (
         <InputStepperContainer>
             <Button
                 className="stepper__button"
-                clickEvent={() => { qty > 1 && updateQTY(id, qty - 1) }}
+                clickEvent={qty > 1 ? (() => { setQty(qty - 1); updateQTY(id, qty - 1) }) : null}
             >
                 －
             </Button>
             <input className="stepper__input" type="number" value={qty} readOnly />
             <Button
                 className="stepper__button"
-                clickEvent={() => { qty < 5 && updateQTY(id, qty + 1) }}
+                clickEvent={qty < 5 ? (() => { setQty(qty + 1); updateQTY(id, qty + 1) }) : null}
             >
                 ＋
             </Button>
@@ -59,7 +60,7 @@ const InputStepper = ({ id, qty, updateQTY }) => {
     )
 }
 export default connect(
-    state => ({ qty: state.cart.qty }),
+    null,
     dispatch => ({
         updateQTY: (id, qty) => dispatch(updateQTY(id, qty))
     })
