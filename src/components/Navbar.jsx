@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "./Button";
+import SearchBar from "./SearchBar";
 import cart_48x48 from "../assets/shopping_cart_white_48x48.png"
 
 const NavbarContainer = styled.div`
@@ -27,6 +28,11 @@ const NavbarContainer = styled.div`
             display: flex;
             align-items: center;
         }
+
+        &__left {
+            display: flex;
+            flex-direction: row;
+        }
     }
 
     .button--home {
@@ -45,11 +51,14 @@ const Navbar = ({ cartItems }) => {
     return (
         <NavbarContainer>
             <div className="navbar__wrap">
-                <Link to="/">
-                    <Button className="button--home">
-                        Home
+                <div className="navbar__left">
+                    <Link to="/">
+                        <Button className="button--home">
+                            Home
                     </Button>
-                </Link>
+                    </Link>
+                    <SearchBar />
+                </div>
                 <Link to="/cart">
                     <span className="navbar__cart">
                         <Button
