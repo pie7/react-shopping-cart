@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleModal } from "../reducers/product";
 import Price from "./Price";
@@ -41,7 +42,15 @@ const CardContainer = styled.div`
     }
 `
 
-const Card = ({ id, title, imgURL, alt, price, isModalOpen, toggleModal }) => {
+const Card = ({
+    id = 1,
+    title = '',
+    imgURL = '',
+    alt = '',
+    price = 0,
+    isModalOpen = false,
+    toggleModal = null
+}) => {
     return (
         <CardContainer>
             <div className="card__title">{title}</div>
@@ -62,6 +71,17 @@ const Card = ({ id, title, imgURL, alt, price, isModalOpen, toggleModal }) => {
         </CardContainer>
     )
 }
+
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    imgURL: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
+    toggleModal: PropTypes.func.isRequired
+}
+
 export default connect(
     state => ({
         isModalOpen: state.product.isModalOpen

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 const ButtonContainer = styled.button`
@@ -16,7 +17,7 @@ const ButtonContainer = styled.button`
     font-weight: 500;
 `
 
-const Button = ({ className, clickEvent, children }) => {
+const Button = ({ className = '', clickEvent = null, children = null }) => {
     return (
         <ButtonContainer
             className={className}
@@ -26,4 +27,11 @@ const Button = ({ className, clickEvent, children }) => {
         </ButtonContainer>
     )
 }
+
+Button.propTypes = {
+    className: PropTypes.string,
+    clickEvent: PropTypes.func,
+    children: PropTypes.node.isRequired
+}
+
 export default Button

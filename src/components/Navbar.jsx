@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "./Button";
@@ -47,7 +48,7 @@ const NavbarContainer = styled.div`
     }
 `
 
-const Navbar = ({ cartItems }) => {
+const Navbar = ({ cartItems = [] }) => {
     return (
         <NavbarContainer>
             <div className="navbar__wrap">
@@ -73,6 +74,11 @@ const Navbar = ({ cartItems }) => {
         </NavbarContainer>
     )
 }
+
+Navbar.propTypes = {
+    cartItems: PropTypes.array.isRequired
+}
+
 export default connect(
     state => ({
         cartItems: state.cart.cartItems

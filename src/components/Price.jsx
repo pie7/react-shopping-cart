@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 const PriceContainer = styled.div`
@@ -7,7 +8,7 @@ const PriceContainer = styled.div`
     margin-bottom: ${props => props.marginBottom}px;
 `
 
-const Price = ({ amount, color, marginBottom, fontSize }) => {
+const Price = ({ amount = 0, color = '', marginBottom = 0, fontSize = 0 }) => {
     return (
         <PriceContainer
             fontSize={fontSize}
@@ -18,4 +19,12 @@ const Price = ({ amount, color, marginBottom, fontSize }) => {
         </PriceContainer>
     )
 }
+
+Price.propTypes = {
+    amount: PropTypes.number.isRequired,
+    color: PropTypes.string,
+    marginBottom: PropTypes.number,
+    fontSize: PropTypes.number
+}
+
 export default Price

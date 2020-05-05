@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
-
 import { connect } from "react-redux";
 import { updateVersion } from "../reducers/product";
 import { updateItemVersion } from "../reducers/cart";
@@ -64,7 +64,7 @@ const RadioGroupContainer = styled.div`
     }
 `
 
-const RadioGroup = ({ id, defaultValue, updateVersion, updateItemVersion }) => {
+const RadioGroup = ({ id = 1, defaultValue = 'standard', updateVersion = null, updateItemVersion = null }) => {
     return (
         <RadioGroupContainer>
             <div className="radio__item">
@@ -96,6 +96,14 @@ const RadioGroup = ({ id, defaultValue, updateVersion, updateItemVersion }) => {
         </RadioGroupContainer>
     )
 }
+
+RadioGroup.propTypes = {
+    id: PropTypes.number.isRequired,
+    defaultValue: PropTypes.string.isRequired,
+    updateVersion: PropTypes.func.isRequired,
+    updateItemVersion: PropTypes.func.isRequired
+}
+
 export default connect(
     null,
     dispatch => ({

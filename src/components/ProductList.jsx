@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
-
 import Modal from "./Modal";
 import ProductPopup from "./ProductPopup";
 import Card from "./Card";
@@ -42,7 +42,7 @@ const ProductCardList = styled.li`
     box-sizing: border-box;
 `;
 
-const ProductList = ({ currentClickID, products }) => {
+const ProductList = ({ products = [], currentClickID = null }) => {
     return (
         <ProductCardContainer>
             {products && products.map(item => {
@@ -62,7 +62,7 @@ const ProductList = ({ currentClickID, products }) => {
                             id={item.id}
                             title={item.user}
                             imgURL={item.previewURL}
-                            alt={item.tag}
+                            alt={item.tags}
                             price={item.views}
                         />
                         {currentClickID === item.id &&
@@ -76,12 +76,18 @@ const ProductList = ({ currentClickID, products }) => {
         </ProductCardContainer>
     )
 }
+
+ProductList.propTypes = {
+    products: PropTypes.array.isRequired,
+    currentClickID: PropTypes.number
+}
+
 export default connect(
     state => ({
         currentClickID: state.product.currentClickID,
         products: state.product.products
     }),
-null
+    null
 )(ProductList)
 
 const desc = `

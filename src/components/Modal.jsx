@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { toggleModal } from "../reducers/product";
@@ -45,7 +46,7 @@ const ModalContainer = styled.div`
 
 `
 
-const Modal = ({ isModalOpen, children, toggleModal }) => {
+const Modal = ({ isModalOpen = false, children = null, toggleModal = null }) => {
     return (
         <ModalContainer display={isModalOpen ? 'block' : 'none'}>
             <div className="modal__wrap">
@@ -63,9 +64,10 @@ const Modal = ({ isModalOpen, children, toggleModal }) => {
     )
 }
 
-Modal.defaultProps = {
-    isModalOpen: false,
-    children: null
+Modal.propTypes = {
+    isModalOpen: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
+    toggleModal: PropTypes.func.isRequired
 }
 
 export default connect(

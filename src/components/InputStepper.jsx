@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { updateQTY } from "../reducers/cart";
@@ -39,7 +40,7 @@ const InputStepperContainer = styled.div`
     }
 `
 
-const InputStepper = ({ id, updateQTY }) => {
+const InputStepper = ({ id = 1, updateQTY = null }) => {
     const [qty, setQty] = useState(1)
     return (
         <InputStepperContainer>
@@ -59,6 +60,12 @@ const InputStepper = ({ id, updateQTY }) => {
         </InputStepperContainer>
     )
 }
+
+InputStepper.propTypes = {
+    id: PropTypes.number.isRequired,
+    updateQTY: PropTypes.func.isRequired
+}
+
 export default connect(
     null,
     dispatch => ({

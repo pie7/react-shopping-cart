@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { deleteCartItem } from "../reducers/cart";
@@ -56,7 +57,7 @@ const CartEmpty = styled.div`
     }
 `
 
-const Cart = ({ cartItems, deleteCartItem }) => {
+const Cart = ({ cartItems = [], deleteCartItem = null }) => {
     return (
         <CartContainer>
             {cartItems.length > 0 ?
@@ -78,7 +79,7 @@ const Cart = ({ cartItems, deleteCartItem }) => {
                                 <RadioGroup defaultValue={product.version} id={product.id} />
                             </div>
                             <div className="product__qty">
-                                <InputStepper id={product.id}/>
+                                <InputStepper id={product.id} />
                             </div>
                             <Price amount={product.price} />
                             <div className="product__delete" >
@@ -105,9 +106,11 @@ const Cart = ({ cartItems, deleteCartItem }) => {
     )
 }
 
-Cart.defaultProps = {
-    cartItems: []
+Cart.propTypes = {
+    cartItems: PropTypes.array.isRequired,
+    deleteCartItem: PropTypes.func.isRequired
 }
+
 export default connect(
     state => ({
         cartItems: state.cart.cartItems

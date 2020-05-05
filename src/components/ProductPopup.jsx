@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { addToCart } from "../reducers/cart";
@@ -58,8 +59,16 @@ const ProductPopupContainer = styled.div`
     }
 `
 
-
-const ProductPopup = ({ imageLink, price, title, desc, addToCart, id, version, previewURL }) => {
+const ProductPopup = ({
+    imageLink = '',
+    price = 0,
+    title = '',
+    desc = '',
+    addToCart = null,
+    id = 1,
+    version = 'standard',
+    previewURL = ''
+}) => {
     return (
         <ProductPopupContainer>
             <div className="popup__wrap">
@@ -72,7 +81,10 @@ const ProductPopup = ({ imageLink, price, title, desc, addToCart, id, version, p
                         {desc}
                     </div>
                     <div>
-                        <RadioGroup defaultValue={'standard'}/>
+                        <RadioGroup
+                            id={id}
+                            defaultValue={'standard'}
+                        />
                         <Price
                             amount={price}
                             color={'#8E2DE2'}
@@ -90,6 +102,17 @@ const ProductPopup = ({ imageLink, price, title, desc, addToCart, id, version, p
             </div>
         </ProductPopupContainer>
     )
+}
+
+ProductPopup.propTypes = {
+    imageLink: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    addToCart: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+    version: PropTypes.string.isRequired,
+    previewURL: PropTypes.string.isRequired
 }
 
 export default connect(
