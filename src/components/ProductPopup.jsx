@@ -69,6 +69,7 @@ const ProductPopup = ({
     version = 'standard',
     previewURL = ''
 }) => {
+    const addToCartData = { id, title, price, previewURL, version }
     return (
         <ProductPopupContainer>
             <div className="popup__wrap">
@@ -93,7 +94,7 @@ const ProductPopup = ({
                         />
                         <Button
                             className="button--add-to-cart"
-                            clickEvent={() => addToCart(id, title, price, previewURL, version)}
+                            clickEvent={() => addToCart(addToCartData)}
                         >
                             ADD TO CART
                         </Button>
@@ -120,8 +121,8 @@ export default connect(
         version: state.product.version
     }),
     dispatch => ({
-        addToCart: (id, title, price, previewURL, version) => {
-            dispatch(addToCart(id, title, price, previewURL, version))
+        addToCart: (addToCartData) => {
+            dispatch(addToCart(addToCartData))
             dispatch(toggleModal(null, true))
             dispatch(updateVersion('standard'))
         }

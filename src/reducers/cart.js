@@ -6,7 +6,8 @@ const UPDATE_ITEM_VERSION = 'react-shopping-cart/cart/UPDATE_ITEM_VERSION'
 
 
 // Action Createors
-export function addToCart(id, user, views, previewURL, version) {
+export function addToCart(addToCartData) {
+    const { id, user, views, previewURL, version } = addToCartData
     return {
         type: ADD_TO_CART,
         payload: {
