@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateSearchInput } from "../reducers/product";
 
@@ -30,17 +31,7 @@ const SearchBarContainer = styled.div`
     }
 `
 
-    // &::before {
-    //     left: 0;
-    //     right: 0;
-    //     bottom: 0;
-    //     content: "\00a0";
-    //     position: absolute;
-    //     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-    //     pointer-events: none;
-    // }
-
-const SearchBar = ({ updateSearchInput }) => {
+const SearchBar = ({ updateSearchInput = null }) => {
     return (
         <SearchBarContainer>
             <input
@@ -52,6 +43,11 @@ const SearchBar = ({ updateSearchInput }) => {
         </SearchBarContainer>
     )
 }
+
+SearchBar.propTypes = {
+    updateSearchInput: PropTypes.func.isRequired
+}
+
 export default connect(
     state => ({
         searchKeyword: state.product.searchKeyword
