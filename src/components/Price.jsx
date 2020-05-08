@@ -8,7 +8,7 @@ const PriceContainer = styled.div`
     margin-bottom: ${props => props.marginBottom}px;
 `
 
-const Price = ({ amount = 0, color = '', marginBottom = 0, fontSize = 0 }) => {
+const Price = ({ amount = 0, color = '', marginBottom = 0, fontSize = 18 }) => {
     return (
         <PriceContainer
             fontSize={fontSize}
