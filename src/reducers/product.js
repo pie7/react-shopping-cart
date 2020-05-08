@@ -1,7 +1,9 @@
 // Actions
 export const FETCH_PRODUCT = 'react-shopping-cart/product/FETCH_PRODUCT'
+export const SWITCH_PRODUCT = 'react-shopping-cart/product/SWITCH_PRODUCT'
 const TOGGLE_MODAL = 'react-shopping-cart/product/TOGGLE_MODAL'
-const UPDATE_VERSION = 'react-shopping-cart/cart/UPDATE_VERSION'
+const UPDATE_VERSION = 'react-shopping-cart/product/UPDATE_VERSION'
+export const UPDATE_SEARCH_INPUT = 'react-shopping-cart/product/UPDATE_SEARCH_INPUT'
 
 // Action Createors
 export function toggleModal(currentClickID, isModalOpen) {
@@ -12,6 +14,17 @@ export function toggleModal(currentClickID, isModalOpen) {
             isModalOpen
         }
     }
+}
+
+export function updateSearchInput(e) {
+    return e.key === 'Enter'
+        ? {
+            type: UPDATE_SEARCH_INPUT,
+            payload: {
+                searchKeyword: e.target.value
+            }
+        }
+        : { type: null }
 }
 
 export function updateVersion(version) {
@@ -36,7 +49,7 @@ export default function productReducer(state = initialState, action = {}) {
         case FETCH_PRODUCT:
             return {
                 ...state,
-                products: action.payload.data.hits,
+                products: action.payload.data.hits
             }
         case TOGGLE_MODAL:
             return {
@@ -48,6 +61,16 @@ export default function productReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 version: action.payload.version
+            }
+        case UPDATE_SEARCH_INPUT:
+            return {
+                ...state,
+                searchKeyword: action.payload.searchKeyword
+            }
+        case SWITCH_PRODUCT:
+            return {
+                ...state,
+                products: action.payload.data.hits
             }
         default:
             return state
