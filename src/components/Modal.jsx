@@ -47,6 +47,22 @@ const ModalContainer = styled.div`
 `
 
 const Modal = ({ isModalOpen = false, children = null, toggleModal = null }) => {
+    useEffect(() => {
+        if (isModalOpen) {
+            disableBodyScroll()
+        }
+
+        return () => rmoveBodyElementStyle()
+    })
+
+    const disableBodyScroll = () => {
+        document.body.style.overflow = 'hidden'
+    }
+
+    const rmoveBodyElementStyle = () => {
+        document.body.removeAttribute('style')
+    }
+
     return (
         <ModalContainer display={isModalOpen ? 'block' : 'none'}>
             <div className="modal__wrap">
