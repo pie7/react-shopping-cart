@@ -21,6 +21,15 @@ const ProductCardContainer =styled.ul`
         width: 65%;
         content: "";
     }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-width: 325px;
+        max-width: 375px;
+        align-items: center;
+        width: 100%;
+    }
 `
 
 const ProductCardList = styled.li`

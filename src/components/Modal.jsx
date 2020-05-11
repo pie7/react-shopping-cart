@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
@@ -26,12 +26,15 @@ const ModalContainer = styled.div`
         &__body {
             position: relative;
             width: 960px;
-            height: 600px;
             padding: 16px 32px 24px;
             background-color: #fff;
             box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),
                     0px 5px 8px 0px rgba(0,0,0,0.14),
                     0px 1px 14px 0px rgba(0,0,0,0.12);
+
+            @media (max-width: 768px) {
+                width: 275px;
+            }
         }
     }
 

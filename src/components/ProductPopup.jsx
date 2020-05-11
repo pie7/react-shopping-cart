@@ -19,6 +19,10 @@ const ProductPopupContainer = styled.div`
     .popup__wrap {
         display: flex;
         flex-direction: row;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
 
     .product {

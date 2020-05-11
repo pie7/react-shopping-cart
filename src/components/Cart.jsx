@@ -13,6 +13,13 @@ const CartContainer = styled.div`
     width: 60%;
     min-width: 960px;
     padding: 32px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        min-width: 325px;
+        padding: 16px 8px;
+    }
 
     .product {
         &__wrap {
@@ -25,6 +32,33 @@ const CartContainer = styled.div`
             justify-content: space-between;
             align-items: center;
             min-height: 150px;
+        }
+
+        &__info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                margin-left: 8px;
+            }
+        }
+
+        &__image {
+            width: 25%;
+
+            @media (max-width: 768px) {
+                width: 50%;
+            }
+        }
+
+        &__desc,
+        &__category,
+        &__qty,
+        &__price {
+            margin-bottom: 8px;
         }
 
         &__id {
@@ -67,27 +101,31 @@ const Cart = ({ cartItems = [], deleteCartItem = null }) => {
                             <div className="product__image">
                                 <img src={product.previewURL} alt={product.title} />
                             </div>
-                            <div className="product__desc">
-                                <div className="product__title">
-                                    {product.title}
+                            <div className="product__info">
+                                <div className="product__desc">
+                                    <div className="product__title">
+                                        {product.title}
+                                    </div>
+                                    <div className="product__id">
+                                        {`# ${product.id}`}
+                                    </div>
                                 </div>
-                                <div className="product__id">
-                                    {`# ${product.id}`}
+                                <div className="product__category">
+                                    <RadioGroup defaultValue={product.version} id={product.id} />
                                 </div>
-                            </div>
-                            <div className="product__category">
-                                <RadioGroup defaultValue={product.version} id={product.id} />
-                            </div>
-                            <div className="product__qty">
-                                <InputStepper id={product.id} />
-                            </div>
-                            <Price amount={product.price} />
-                            <div className="product__delete" >
-                                <Button
-                                    className={'button--delete'}
-                                    clickEvent={() => deleteCartItem(product.id)}>
-                                    ✕
+                                <div className="product__qty">
+                                    <InputStepper id={product.id} />
+                                </div>
+                                <div className="product__price">
+                                    <Price amount={product.price} />
+                                </div>
+                                <div className="product__delete" >
+                                    <Button
+                                        className={'button--delete'}
+                                        clickEvent={() => deleteCartItem(product.id)}>
+                                        ✕
                                 </Button>
+                                </div>
                             </div>
                         </div>
                     )

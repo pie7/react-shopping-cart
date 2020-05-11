@@ -8,8 +8,8 @@ import SearchBar from "./SearchBar";
 import cart_48x48 from "../assets/shopping_cart_white_48x48.png"
 
 const NavbarContainer = styled.div`
-    display: felx;
-    justify-context: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
     background-color: #8E2DE2;
     width: 100%;
@@ -21,6 +21,10 @@ const NavbarContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         min-width: 960px;
+
+        @media (max-width: 768px) {
+            min-width: 325px;
+        }
     }
 
     .navbar {

@@ -9,6 +9,11 @@ const ImageContainer = styled.div`
     min-width: 640px;
     min-height: 480px;
 
+    @media (max-width: 768px) {
+        min-width: 275px;
+        min-height: 215px;
+    }
+
     img {
         position: absolute;
         top: 0;
