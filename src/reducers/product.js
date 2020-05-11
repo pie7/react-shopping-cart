@@ -4,6 +4,7 @@ export const SWITCH_PRODUCT = 'react-shopping-cart/product/SWITCH_PRODUCT'
 const TOGGLE_MODAL = 'react-shopping-cart/product/TOGGLE_MODAL'
 const UPDATE_VERSION = 'react-shopping-cart/product/UPDATE_VERSION'
 export const UPDATE_SEARCH_INPUT = 'react-shopping-cart/product/UPDATE_SEARCH_INPUT'
+export const TRIGGER_SEARCH = 'react-shopping-cart/product/TRIGGER_SEARCH'
 
 // Action Createors
 export function toggleModal(currentClickID, isModalOpen) {
@@ -19,12 +20,17 @@ export function toggleModal(currentClickID, isModalOpen) {
 export function updateSearchInput(e) {
     return e.key === 'Enter'
         ? {
+            type: TRIGGER_SEARCH,
+            payload: {
+                searchKeyword: e.target.value
+            }
+        }
+        : {
             type: UPDATE_SEARCH_INPUT,
             payload: {
                 searchKeyword: e.target.value
             }
         }
-        : { type: null }
 }
 
 export function updateVersion(version) {
@@ -40,7 +46,8 @@ const initialState = {
     products: [],
     currentClickID: null,
     isModalOpen: false,
-    version: 'standard'
+    version: 'standard',
+    searchKeyword: ''
 }
 
 // Reducer
@@ -62,6 +69,11 @@ export default function productReducer(state = initialState, action = {}) {
                 ...state,
                 version: action.payload.version
             }
+        case TRIGGER_SEARCH:
+            return {
+                ...state,
+                searchKeyword: ''
+            }
         case UPDATE_SEARCH_INPUT:
             return {
                 ...state,
@@ -70,7 +82,8 @@ export default function productReducer(state = initialState, action = {}) {
         case SWITCH_PRODUCT:
             return {
                 ...state,
-                products: action.payload.data.hits
+                products: action.payload.data.hits,
+                searchKeyword: ''
             }
         default:
             return state

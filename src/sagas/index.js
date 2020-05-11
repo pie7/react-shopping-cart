@@ -1,6 +1,6 @@
-import { put, call, fork, takeEvery, take } from "redux-saga/effects";
+import { put, call, fork, take } from "redux-saga/effects";
 import axios from 'axios'
-import { FETCH_PRODUCT, SWITCH_PRODUCT, UPDATE_SEARCH_INPUT } from "../reducers/product";
+import { FETCH_PRODUCT, SWITCH_PRODUCT, TRIGGER_SEARCH } from "../reducers/product";
 
 const keyword = "lamborghini+car"
 
@@ -20,7 +20,7 @@ function* fetchProduct(action) {
 function* switchProduct() {
     try {
         while (true) {
-            const action = yield take(UPDATE_SEARCH_INPUT)
+            const action = yield take(TRIGGER_SEARCH)
             const { searchKeyword } = action.payload
             const data = yield call(api, `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${searchKeyword}&orientation=horizontal&image_type=photo&pretty=true`)
             yield put({ type: SWITCH_PRODUCT, payload: data })
