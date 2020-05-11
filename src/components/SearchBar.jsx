@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -28,17 +28,23 @@ const SearchBarContainer = styled.div`
         min-width: 0;
         background: none;
         box-sizing: content-box;
+
+        &:focus {
+            outline: none;
+        }
     }
 `
 
-const SearchBar = ({ updateSearchInput = null }) => {
+const SearchBar = ({ searchKeyword = '', updateSearchInput = null }) => {
     return (
         <SearchBarContainer>
             <input
                 type="text"
                 className="search__input"
                 placeholder="Search..."
+                onChange={(e) => updateSearchInput(e)}
                 onKeyDown={(e) => updateSearchInput(e)}
+                value={searchKeyword}
             />
         </SearchBarContainer>
     )
