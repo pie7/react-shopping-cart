@@ -100,3 +100,12 @@ title        | string   |
 desc         | string   |
 addToCart    | func     |
 version      | string   |
+
+```js
+import Image from './Image'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+imageLink    | string   |
+previewURL   | string   |
+title        | string   |

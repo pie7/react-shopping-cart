@@ -7,6 +7,7 @@ import { toggleModal, updateVersion } from "../reducers/product";
 import RadioGroup from "./RadioGroup";
 import Price from "./Price";
 import Button from "./Button";
+import Image from "./Image";
 
 const ProductPopupContainer = styled.div`
     position: relative;
@@ -38,11 +39,6 @@ const ProductPopupContainer = styled.div`
             flex-direction: column;
             justify-content: space-between;
         }
-
-        &__image {
-            width: 75%;
-        }
-
     }
 
     .button--add-to-cart {
@@ -73,7 +69,11 @@ const ProductPopup = ({
     return (
         <ProductPopupContainer>
             <div className="popup__wrap">
-                <img className="product__image" src={imageLink} alt={title} />
+                <Image
+                    imageLink={imageLink}
+                    title={title}
+                    previewURL={previewURL}
+                />
                 <div className="product__info">
                     <div className="product__title">
                         {title}
