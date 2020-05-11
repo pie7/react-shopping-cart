@@ -51,17 +51,16 @@ export function deleteCartItem(id) {
 
 
 const initialState = {
-    cartItems:
-        [
-            {
-                id: 605334,
-                title: "jarmoluk",
-                price: 44601,
-                previewURL: "https://cdn.pixabay.com/photo/2015/01/20/11/09/lamborghini-605334_150.jpg",
-                version: "standard",
-                qty: 1
-            }
-        ],
+    cartItems: [
+        {
+            id: 1149417,
+            title: "Free-Photos",
+            price: 35504,
+            previewURL: "https://cdn.pixabay.com/photo/2016/01/19/16/50/border-collie-1149417_150.jpg",
+            version: "standard",
+            qty: 1
+        }
+    ],
     currentUpdateItemID: null,
     qty: 1
 }
