@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
 import cart_48x48 from "../assets/shopping_cart_white_48x48.png"
+import { Switch, Route } from "react-router-dom";
 
 const NavbarContainer = styled.div`
     display: flex;
@@ -62,7 +63,11 @@ const Navbar = ({ cartItems = [] }) => {
                             Home
                     </Button>
                     </Link>
-                    <SearchBar />
+                    <Switch>
+                        <Route exact path="/">
+                            <SearchBar />
+                        </Route>
+                    </Switch>
                 </div>
                 <Link to="/cart">
                     <span className="navbar__cart">
