@@ -63,6 +63,7 @@ const ProductList = ({ products = [], currentClickID = null }) => {
                         desc={desc}
                         title={item.user}
                         price={item.views}
+                        tags={item.tags}
                     />
                 )
                 return (

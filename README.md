@@ -85,6 +85,7 @@ Name         | Type     | Default
 id           | number   |
 updateVersion| func     |
 defaultValue | string   |
+radios       | array    |
 
 
 ```js

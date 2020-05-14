@@ -46,7 +46,7 @@ const initialState = {
     products: [],
     currentClickID: null,
     isModalOpen: false,
-    version: 'standard',
+    version: '',
     searchKeyword: ''
 }
 

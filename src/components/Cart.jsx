@@ -111,7 +111,11 @@ const Cart = ({ cartItems = [], deleteCartItem = null }) => {
                                     </div>
                                 </div>
                                 <div className="product__category">
-                                    <RadioGroup defaultValue={product.version} id={product.id} />
+                                    <RadioGroup
+                                        defaultValue={product.version}
+                                        id={product.id}
+                                        radios={product.radios}
+                                    />
                                 </div>
                                 <div className="product__qty">
                                     <InputStepper id={product.id} />

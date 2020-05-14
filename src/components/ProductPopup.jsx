@@ -67,9 +67,15 @@ const ProductPopup = ({
     addToCart = null,
     id = 1,
     version = 'standard',
-    previewURL = ''
+    previewURL = '',
+    tags
 }) => {
-    const addToCartData = { id, title, price, previewURL, version }
+    const radios = []
+    const tagArray = tags.split(',').map(tag => tag.trim())
+    tagArray.forEach(
+        tag => { radios.push({ name: tag }) }
+    )
+    const addToCartData = { id, title, price, previewURL, version, radios }
     return (
         <ProductPopupContainer>
             <div className="popup__wrap">
@@ -88,7 +94,7 @@ const ProductPopup = ({
                     <div>
                         <RadioGroup
                             id={id}
-                            defaultValue={'standard'}
+                            radios={radios}
                         />
                         <Price
                             amount={price}
@@ -128,7 +134,7 @@ export default connect(
         addToCart: (addToCartData) => {
             dispatch(addToCart(addToCartData))
             dispatch(toggleModal(null, true))
-            dispatch(updateVersion('standard'))
+            dispatch(updateVersion(''))
         }
     })
 )(ProductPopup)

@@ -64,44 +64,44 @@ const RadioGroupContainer = styled.div`
     }
 `
 
-const RadioGroup = ({ id = 1, defaultValue = 'standard', updateVersion = null, updateItemVersion = null }) => {
+
+const RadioGroup = ({
+    id = 1,
+    defaultValue = '',
+    updateVersion = null,
+    updateItemVersion = null,
+    radios = []
+}) => {
     return (
         <RadioGroupContainer>
-            <div className="radio__item">
-                <input
-                    className="input__item"
-                    type="radio"
-                    name={`${id}-color`}
-                    id={`${id}-standard`}
-                    defaultChecked={defaultValue === 'standard'}
-                    onClick={() => { updateVersion('standard'); updateItemVersion(id, 'standard') }}
-                />
-                <label className="label__item" htmlFor={`${id}-standard`}>
-                    Standard
-            </label>
-            </div>
-            <div className="radio__item">
-                <input
-                    className="input__item"
-                    type="radio"
-                    name={`${id}-color`}
-                    id={`${id}-long-range`
-                    } defaultChecked={defaultValue === 'long-range'}
-                    onClick={() => { updateVersion('long-range'); updateItemVersion(id, 'long-range') }}
-                />
-                <label className="label__item" htmlFor={`${id}-long-range`}>
-                    Long Range
-            </label>
-            </div>
+            {radios && radios.map((radio, index) =>
+                <div className="radio__item" key={`${index}_${radio.name}`}>
+                    <input
+                        className="input__item"
+                        type="radio"
+                        name={`${id}-color`}
+                        id={`${id}-${radio.name}`}
+                        defaultChecked={defaultValue ? defaultValue === radio.name : index === 0}
+                        onClick={() => { updateVersion(radio.name); updateItemVersion(id, radio.name) }}
+                    />
+                    <label
+                        className="label__item"
+                        htmlFor={`${id}-${radio.name}`}
+                    >
+                        {radio.name}
+                    </label>
+                </div>
+            )}
         </RadioGroupContainer>
     )
 }
 
 RadioGroup.propTypes = {
     id: PropTypes.number.isRequired,
-    defaultValue: PropTypes.string.isRequired,
+    defaultValue: PropTypes.string,
     updateVersion: PropTypes.func.isRequired,
-    updateItemVersion: PropTypes.func.isRequired
+    updateItemVersion: PropTypes.func.isRequired,
+    radios: PropTypes.array.isRequired
 }
 
 export default connect(

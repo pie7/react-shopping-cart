@@ -7,7 +7,7 @@ const UPDATE_ITEM_VERSION = 'react-shopping-cart/cart/UPDATE_ITEM_VERSION'
 
 // Action Createors
 export function addToCart(addToCartData) {
-    const { id, title, price, previewURL, version } = addToCartData
+    const { id, title, price, previewURL, version, radios } = addToCartData
     return {
         type: ADD_TO_CART,
         payload: {
@@ -15,7 +15,8 @@ export function addToCart(addToCartData) {
             title,
             price,
             previewURL,
-            version
+            version,
+            radios
         }
     }
 }
@@ -57,8 +58,12 @@ const initialState = {
             title: "Free-Photos",
             price: 35504,
             previewURL: "https://cdn.pixabay.com/photo/2016/01/19/16/50/border-collie-1149417_150.jpg",
-            version: "standard",
-            qty: 1
+            version: "Adaptable",
+            qty: 1,
+            radios: [
+                { name: 'Adaptable' },
+                { name: 'Independent' }
+            ]
         }
     ],
     currentUpdateItemID: null,
