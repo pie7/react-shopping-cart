@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from "react-redux";
 import { toggleModal } from "../reducers/product";
 import Button from "./Button";
+import { ReactComponent as Close } from "../assets/close-24px.svg";
 
 const ModalContainer = styled.div`
     display: ${ props => props.display };
@@ -74,7 +75,7 @@ const Modal = ({ isModalOpen = false, children = null, toggleModal = null }) => 
                         className="button--close"
                         clickEvent={() => { toggleModal(null, isModalOpen) }}
                     >
-                        ✕
+                        <Close />
                     </Button>
                     {children}
                 </div>

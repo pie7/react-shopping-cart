@@ -8,6 +8,7 @@ import RadioGroup from "./RadioGroup";
 import InputStepper from "./InputStepper";
 import cart_192x192 from "../assets/shopping_cart_white_192x192.png"
 import Button from './Button';
+import { ReactComponent as Close24px } from "../assets/close-24px.svg";
 
 const CartContainer = styled.div`
     width: 60%;
@@ -127,7 +128,7 @@ const Cart = ({ cartItems = [], deleteCartItem = null }) => {
                                     <Button
                                         className={'button--delete'}
                                         clickEvent={() => deleteCartItem(product.id)}>
-                                        ✕
+                                        <Close24px />
                                 </Button>
                                 </div>
                             </div>

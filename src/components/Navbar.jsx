@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
-import cart_48x48 from "../assets/shopping_cart_white_48x48.png"
+import { ReactComponent as Cart48White } from "../assets/shopping_cart-white-48dp.svg";
 import { Switch, Route } from "react-router-dom";
 
 const NavbarContainer = styled.div`
@@ -76,7 +76,7 @@ const Navbar = ({ cartItems = [] }) => {
                         >
                             {cartItems && cartItems.length}
                         </Button>
-                        <img src={cart_48x48} alt="cart" />
+                        <Cart48White />
                     </span>
                 </Link>
             </div>
