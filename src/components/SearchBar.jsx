@@ -6,6 +6,7 @@ import { updateSearchInput, triggerSearch } from "../reducers/product";
 import { ReactComponent as SearchWhite24dp } from "../assets/search-white-24dp.svg";
 
 const SearchBarContainer = styled.div`
+    display: flex;
     position: relative;
 
     &::before {
@@ -19,19 +20,26 @@ const SearchBarContainer = styled.div`
         pointer-events: none;
     }
 
-    .search__input {
-        font: inherit;
-        color: #fff;
-        width: 100%;
-        border: 0;
-        margin: 0;
-        display: block;
-        min-width: 0;
-        background: none;
-        box-sizing: content-box;
+    .search {
 
-        &:focus {
-            outline: none;
+        &__input {
+            font: inherit;
+            color: #fff;
+            width: 100%;
+            border: 0;
+            margin: 0;
+            display: block;
+            min-width: 0;
+            background: none;
+            box-sizing: content-box;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &__icon {
+            cursor: pointer;
         }
     }
 `
@@ -46,6 +54,10 @@ const SearchBar = ({ searchKeyword = '', updateSearchInput = null, triggerSearch
                 onChange={(e) => updateSearchInput(e)}
                 onKeyDown={(e) => { e.key === 'Enter' && triggerSearch(searchKeyword) }}
                 value={searchKeyword}
+            />
+            <SearchWhite24dp
+                className="search__icon"
+                onClick={() => { searchKeyword.trim() && triggerSearch(searchKeyword) }}
             />
         </SearchBarContainer>
     )
