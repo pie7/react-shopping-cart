@@ -18,19 +18,21 @@ export function toggleModal(currentClickID, isModalOpen) {
 }
 
 export function updateSearchInput(e) {
-    return e.key === 'Enter'
-        ? {
-            type: TRIGGER_SEARCH,
-            payload: {
-                searchKeyword: e.target.value
-            }
+    return {
+        type: UPDATE_SEARCH_INPUT,
+        payload: {
+            searchKeyword: e.target.value
         }
-        : {
-            type: UPDATE_SEARCH_INPUT,
-            payload: {
-                searchKeyword: e.target.value
-            }
+    }
+}
+
+export function triggerSearch(searchKeyword) {
+    return {
+        type: TRIGGER_SEARCH,
+        payload: {
+            searchKeyword
         }
+    }
 }
 
 export function updateVersion(version) {
