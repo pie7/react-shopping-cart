@@ -3,6 +3,7 @@ const ADD_TO_CART = 'react-shopping-cart/cart/ADD_TO_CART'
 const DELETE_ITEM = 'react-shopping-cart/cart/DELETE_ITEM'
 const UPDATE_QTY = 'react-shopping-cart/cart/UPDATE_QTY'
 const UPDATE_ITEM_VERSION = 'react-shopping-cart/cart/UPDATE_ITEM_VERSION'
+const UPDATE_CREDIT_CARD_INFO = 'react-shopping-cart/cart/UPDATE_CREDIT_CARD_INFO'
 
 
 // Action Createors
@@ -50,6 +51,15 @@ export function deleteCartItem(id) {
     }
 }
 
+export function updateCreditCardInfo(e) {
+    return {
+        type: UPDATE_CREDIT_CARD_INFO,
+        payload: {
+            [e.target.name]: e.target.value
+        }
+    }
+}
+
 
 const initialState = {
     cartItems: [
@@ -67,7 +77,13 @@ const initialState = {
         }
     ],
     currentUpdateItemID: null,
-    qty: 1
+    qty: 1,
+    creditCard: {
+        name: "FULL NAME",
+        number: "•••• •••• •••• ••••",
+        expiryDate: "••/••",
+        cvv: 0
+    }
 }
 
 
@@ -112,6 +128,18 @@ export default function cartReducer(state = initialState, action = {}) {
                 cartItems: state.cartItems.filter(item =>
                     item.id !== action.payload.id
                 )
+            }
+        case UPDATE_CREDIT_CARD_INFO:
+            const currentProp = Object.keys(action.payload)
+            if (currentProp[0] === 'number') {
+                action.payload[currentProp] = (action.payload[currentProp]).replace(/\d{4}(?=.)/g, '$& ')
+            }
+            return {
+                ...state,
+                creditCard: {
+                    ...state.creditCard,
+                    [currentProp]: action.payload[currentProp],
+                }
             }
         default:
             return state
