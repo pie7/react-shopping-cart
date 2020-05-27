@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(
-  // cartReducer,
   rootReducer,
   applyMiddleware(sagaMiddleware)
 )

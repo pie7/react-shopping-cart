@@ -110,18 +110,18 @@ export default function cartReducer(state = initialState, action = {}) {
                 ),
                 qty: action.payload.qty
             }
-            case UPDATE_ITEM_VERSION:
-                return {
-                    ...state,
-                    cartItems: state.cartItems.map(item =>
-                        item.id === action.payload.id
-                            ? {
-                                ...item,
-                                version: action.payload.version
-                            }
-                            : item
-                    )
-                }
+        case UPDATE_ITEM_VERSION:
+            return {
+                ...state,
+                cartItems: state.cartItems.map(item =>
+                    item.id === action.payload.id
+                        ? {
+                            ...item,
+                            version: action.payload.version
+                        }
+                        : item
+                )
+            }
         case DELETE_ITEM:
             return {
                 ...state,
