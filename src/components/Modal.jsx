@@ -26,7 +26,8 @@ const ModalContainer = styled.div`
 
         &__body {
             position: relative;
-            width: 960px;
+            width: 90%;
+            max-width: 960px;
             padding: 16px 32px 24px;
             background-color: #fff;
             box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),
@@ -41,8 +42,8 @@ const ModalContainer = styled.div`
 
     .button--close {
         position: absolute;
-        top: 16px;
-        right: 16px;
+        top: 8px;
+        right: 8px;
         font-size: 24px;
         font-weight: 700;
         color: #212121;

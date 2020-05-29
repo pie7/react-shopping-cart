@@ -5,29 +5,31 @@ import { connect } from "react-redux";
 import { toggleModal } from "../reducers/product";
 import Price from "./Price";
 import Button from "./Button";
+import Modal from "./Modal";
 
 const CardContainer = styled.div`
-    .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 375px;
 
-        &__title {
-            padding: 8px;
-            margin-right: auto;
-        }
+    .card {
 
         &__image {
             display: flex;
-            width: 150px;
             min-height: 125px;
-            margin:10px;
             align-items: center;
+
+            & img {
+                width: 100%;
+                min-width: 215px;
+            }
         }
 
         &__info {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
-
         }
     }
 
@@ -42,6 +44,23 @@ const CardContainer = styled.div`
     }
 `
 
+const ProductCardList = styled.li`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    box-sizing: boder-box;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+                0px 1px 1px 0px rgba(0,0,0,0.14),
+                0px 1px 3px 0px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    padding: 0 16px;
+    box-sizing: border-box;
+`;
+
+
 const Card = ({
     id = 1,
     title = '',
@@ -49,26 +68,35 @@ const Card = ({
     alt = '',
     price = 0,
     isModalOpen = false,
-    toggleModal = null
+    toggleModal = null,
+    modalBody = null,
+    currentClickID = null
 }) => {
     return (
-        <CardContainer>
-            <div className="card__title">{title}</div>
-            <div className="card__image">
-                <img src={imgURL} alt={alt} />
-            </div>
-            <div className="card__info">
-                <Price
-                    amount={price}
-                />
-                <Button
-                    className={'button--card'}
-                    clickEvent={() => { toggleModal(id, isModalOpen) }}
-                >
-                    View
+        <ProductCardList key={`li_${id}`}>
+            <CardContainer key={`li123_${id}`}>
+                <div className="card__title">{title}</div>
+                <div className="card__image">
+                    <img src={imgURL} alt={alt} />
+                </div>
+                <div className="card__info">
+                    <Price
+                        amount={price}
+                    />
+                    <Button
+                        className={'button--card'}
+                        clickEvent={() => { toggleModal(id, isModalOpen) }}
+                    >
+                        View
                 </Button>
-            </div>
-        </CardContainer>
+                </div>
+            </CardContainer>
+            {currentClickID === id &&
+                <Modal key={id}>
+                    {modalBody}
+                </Modal>
+            }
+        </ProductCardList>
     )
 }
 
@@ -79,11 +107,14 @@ Card.propTypes = {
     alt: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     isModalOpen: PropTypes.bool.isRequired,
-    toggleModal: PropTypes.func.isRequired
+    toggleModal: PropTypes.func.isRequired,
+    currentClickID: PropTypes.number,
+    modalBody: PropTypes.node
 }
 
 export default connect(
     state => ({
+        currentClickID: state.product.currentClickID,
         isModalOpen: state.product.isModalOpen
     }),
     dispatch => ({

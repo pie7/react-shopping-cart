@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import Modal from "./Modal";
+
 import ProductPopup from "./ProductPopup";
 import Card from "./Card";
 
@@ -13,7 +13,6 @@ const ProductCardContainer =styled.ul`
     position: relative;
     top: -32px;
     width: 60%;
-    min-width: 960px;
     justify-content: space-around;
 
     &::after {
@@ -25,33 +24,14 @@ const ProductCardContainer =styled.ul`
     @media (max-width: 768px) {
         flex-direction: column;
         flex-wrap: nowrap;
-        min-width: 325px;
-        max-width: 375px;
         align-items: center;
         width: 100%;
+        top: 32px;
     }
 `
 
-const ProductCardList = styled.li`
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 25%;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 175px;
-    min-height: 315px;
-    background-color: #fff;
-    box-sizing: boder-box;
-    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
-                0px 1px 1px 0px rgba(0,0,0,0.14),
-                0px 1px 3px 0px rgba(0,0,0,0.12);
-    border-radius: 4px;
-    margin-bottom: 16px;
-    padding: 8px;
-    box-sizing: border-box;
-`;
 
-const ProductList = ({ products = [], currentClickID = null }) => {
+const ProductList = ({ products = [] }) => {
     return (
         <ProductCardContainer>
             {products && products.map(item => {
@@ -67,20 +47,14 @@ const ProductList = ({ products = [], currentClickID = null }) => {
                     />
                 )
                 return (
-                    <ProductCardList key={item.id}>
-                        <Card
-                            id={item.id}
-                            title={item.user}
-                            imgURL={item.previewURL}
-                            alt={item.tags}
-                            price={item.views}
-                        />
-                        {currentClickID === item.id &&
-                            <Modal>
-                                {modalBody}
-                            </Modal>
-                        }
-                    </ProductCardList>
+                    <Card key={item.id}
+                        id={item.id}
+                        title={item.user}
+                        imgURL={item.previewURL}
+                        alt={item.tags}
+                        price={item.views}
+                        modalBody={modalBody}
+                    />
                 )
             })}
         </ProductCardContainer>
@@ -88,13 +62,11 @@ const ProductList = ({ products = [], currentClickID = null }) => {
 }
 
 ProductList.propTypes = {
-    products: PropTypes.array.isRequired,
-    currentClickID: PropTypes.number
+    products: PropTypes.array.isRequired
 }
 
 export default connect(
     state => ({
-        currentClickID: state.product.currentClickID,
         products: state.product.products
     }),
     null
