@@ -62,8 +62,8 @@ const Cart = ({ cartItems = [] }) => {
             {cartItems.length > 0 ?
                 <>
                     <div className="cart__items">
-                        {cartItems.map(product =>
-                            <CartItem product={product} />
+                        {cartItems.map((product, index) =>
+                            <CartItem key={index} product={product} />
                         )}
                     </div>
                     <div className="cart__form">
@@ -85,8 +85,7 @@ const Cart = ({ cartItems = [] }) => {
 }
 
 Cart.propTypes = {
-    cartItems: PropTypes.array.isRequired,
-    deleteCartItem: PropTypes.func.isRequired
+    cartItems: PropTypes.array.isRequired
 }
 
 export default connect(
