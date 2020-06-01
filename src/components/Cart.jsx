@@ -10,16 +10,15 @@ const CartContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 60%;
-    min-width: 960px;
     padding: 32px;
+    box-sizing: border-box;
+    overflow: hidden;
 
     @media (max-width: 768px) {
-        width: 100%;
-        min-width: 325px;
-        padding: 16px 8px;
         flex-direction: column;
+        width: 100%;
+        padding: 16px;
     }
-
 
     .button--delete {
         font-size: 24px;
