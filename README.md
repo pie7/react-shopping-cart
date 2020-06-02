@@ -47,6 +47,35 @@ price      | number   |
 isModalOpen| bool     |
 toggleModal| func     |
 
+```js
+import CartItem from './CartItem'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+product      | object   |
+
+```js
+import Form from './Form'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+title        | string   |
+
+```js
+import Image from './Image'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+id           | number   |
+
+```js
+import InputStepper from './InputStepper'
+```
+Name         | Type     | Default
+------------ | -------- | -------
+imageLink    | string   |
+previewURL   | string   |
+title        | string   |
 
 ```js
 import Modal from './Modal'
@@ -76,18 +105,6 @@ color       | string   |
 fontSize    | number   |
 marginBottom| number   |
 
-
-```js
-import RadioGroup from './RadioGroup'
-```
-Name         | Type     | Default
------------- | -------- | -------
-id           | number   |
-updateVersion| func     |
-defaultValue | string   |
-radios       | array    |
-
-
 ```js
 import ProductPopup from './ProductPopup'
 ```
@@ -103,10 +120,11 @@ addToCart    | func     |
 version      | string   |
 
 ```js
-import Image from './Image'
+import RadioGroup from './RadioGroup'
 ```
 Name         | Type     | Default
 ------------ | -------- | -------
-imageLink    | string   |
-previewURL   | string   |
-title        | string   |
+id           | number   |
+updateVersion| func     |
+defaultValue | string   |
+radios       | array    |
