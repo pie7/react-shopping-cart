@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from "styled-components"
 import PropTypes from 'prop-types';
-import Price from "./../Price";
-import RadioGroup from "./../RadioGroup";
-import InputStepper from "./../InputStepper";
-import Button from './../Button';
+import Price from "./Price";
+import RadioGroup from "./RadioGroup";
+import InputStepper from "./InputStepper";
+import Button from './Button';
 import { connect } from "react-redux";
-import { ReactComponent as Close24px } from "../../assets/close-24px.svg";
-import { deleteCartItem } from "../../reducers/cart";
+import { ReactComponent as Close24px } from "../assets/close-24px.svg";
+import { deleteCartItem } from "../reducers/cart";
 
 const CartItemContainer = styled.div`
     .product {

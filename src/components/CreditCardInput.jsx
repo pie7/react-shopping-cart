@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components"
 import PropsType from 'prop-types';
 import { connect } from 'react-redux';
-import { updateCreditCardInfo } from "../../reducers/cart";
+import { updateCreditCardInfo } from "../reducers/cart";
 import { useFormik } from 'formik';
 
 const CreditCardInputContainer = styled.form`
