@@ -5,6 +5,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
+import OrderConfirmation from "./components/OrderConfirmation";
 import './App.scss';
 
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route exact path="/cart">
             <Cart />
+          </Route>
+          <Route exact path="/confirmation">
+            <OrderConfirmation />
           </Route>
         </Switch>
       </Router>
