@@ -83,6 +83,10 @@ const initialState = {
         number: "•••• •••• •••• ••••",
         expiryDate: "••/••",
         cvv: 0
+    },
+    orderItems: {
+        orderNumber: "00000001",
+        orderDate: ""
     }
 }
 
