@@ -36,11 +36,12 @@ const Heading = styled.h2`
     ${space}
 `
 
-export const OrderConfirmation = ({ orderItems }) => {
+export const OrderConfirmation = ({ orderItems = {} }) => {
     return (
         <Flex flexWrap="wrap" p={3}>
             <Box mb={3} borderBottom="1px solid">
                 <Heading textAlign='center'>
+                    <Text fontWeight="bold" mb={3}>{orderItems.creditCardName}</Text>
                     Thanks for your order
                 </Heading>
                 <Text textAlign='center' mb={3}>
@@ -79,7 +80,7 @@ export const OrderConfirmation = ({ orderItems }) => {
                     <Box display="flex" borderBottom="1px solid #e1e1e1" py={3}>
                         <Box width={3 / 4} display="flex">
                             <Text>Paid with Credit Card</Text>
-                            <Text style={{ wordWrap: 'break-word' }}>************4235</Text>
+                            <Text style={{ wordWrap: 'break-word' }}>{orderItems.creditCardNumber}</Text>
                         </Box>
                         <Box width={1 / 4}>
                             <Text textAlign="right">$500.75</Text>

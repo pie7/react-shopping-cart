@@ -4,6 +4,7 @@ const DELETE_ITEM = 'react-shopping-cart/cart/DELETE_ITEM'
 const UPDATE_QTY = 'react-shopping-cart/cart/UPDATE_QTY'
 const UPDATE_ITEM_VERSION = 'react-shopping-cart/cart/UPDATE_ITEM_VERSION'
 const UPDATE_CREDIT_CARD_INFO = 'react-shopping-cart/cart/UPDATE_CREDIT_CARD_INFO'
+const SUBMIT_CONFIRMATION = 'react-shopping-cart/cart/SUBMIT_CONFIRMATION'
 
 
 // Action Createors
@@ -60,6 +61,18 @@ export function updateCreditCardInfo(e) {
     }
 }
 
+export function submitConfirmation(submitDatas) {
+    console.log(submitDatas)
+    return {
+        type: SUBMIT_CONFIRMATION,
+        payload: {
+            name: submitDatas.name,
+            number: submitDatas.number,
+            expiryDate: submitDatas.expiryDate,
+            cvv: submitDatas.cvv
+        }
+    }
+}
 
 const initialState = {
     cartItems: [
@@ -86,7 +99,9 @@ const initialState = {
     },
     orderItems: {
         orderNumber: "00000001",
-        orderDate: ""
+        orderDate: "",
+        creditCardNumber: "***********4512",
+        creditCardName: ''
     }
 }
 
@@ -143,6 +158,15 @@ export default function cartReducer(state = initialState, action = {}) {
                 creditCard: {
                     ...state.creditCard,
                     [currentProp]: action.payload[currentProp],
+                }
+            }
+        case SUBMIT_CONFIRMATION:
+            return {
+                ...state,
+                orderItems: {
+                    ...state.orderItems,
+                    creditCardNumber: action.payload.number,
+                    creditCardName: action.payload.name
                 }
             }
         default:
