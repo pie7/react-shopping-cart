@@ -2,8 +2,10 @@ import React from 'react';
 import styled from "styled-components"
 import PropsType from 'prop-types';
 import { connect } from 'react-redux';
-import { updateCreditCardInfo } from "../reducers/cart";
+import { compose } from 'redux'
+import { updateCreditCardInfo, submitConfirmation } from "../reducers/cart";
 import { useFormik } from 'formik';
+import { withRouter } from "react-router-dom";
 
 const CreditCardInputContainer = styled.form`
     .card__input {
@@ -95,7 +97,7 @@ const validate = values => {
     return errors
 }
 
-const CreditCardInput = ({ updateCreditCardInfo }) => {
+const CreditCardInput = ({ updateCreditCardInfo, submitConfirmation, history }) => {
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -104,12 +106,12 @@ const CreditCardInput = ({ updateCreditCardInfo }) => {
             cvv: ''
         },
         validate,
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2))
+        onSubmit: submitDatas => {
+            console.log("submit")
+            submitConfirmation(submitDatas)
+            history.push('/confirmation')
         },
     })
-
-    console.log(formik)
     return (
         <CreditCardInputContainer onSubmit={formik.handleSubmit}>
             <div className="card__input">
@@ -181,9 +183,11 @@ const CreditCardInput = ({ updateCreditCardInfo }) => {
                     </div>
                 </div>
             </div>
+            {/* <Link to="/cart"> */}
             <div>
                 <button type="submit" className="checkout__button">Check Out</button>
             </div>
+            {/* </Link> */}
         </CreditCardInputContainer>
     )
 }
@@ -192,9 +196,15 @@ CreditCardInput.PropsType = {
     updateCreditCardInfo: PropsType.func.isRequired
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        updateCreditCardInfo: (e) => dispatch(updateCreditCardInfo(e))
-    })
+export default compose(
+    connect(
+        state => ({
+            orderItems: state.cart.orderItems
+        }),
+        dispatch => ({
+            updateCreditCardInfo: (e) => dispatch(updateCreditCardInfo(e)),
+            submitConfirmation: (submitDatas) => dispatch(submitConfirmation(submitDatas))
+        })
+    ),
+    withRouter
 )(CreditCardInput)
