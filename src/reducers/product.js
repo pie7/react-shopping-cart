@@ -58,7 +58,7 @@ export default function productReducer(state = initialState, action = {}) {
         case FETCH_PRODUCT:
             return {
                 ...state,
-                products: action.payload.data.hits
+                products: action.payload?.data.hits
             }
         case TOGGLE_MODAL:
             return {
