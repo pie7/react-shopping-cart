@@ -37,9 +37,15 @@ const CartItemContainer = styled.div`
 
         &__image {
             width: 25%;
+            min-width: 10rem;
+            margin-right: 1rem;
 
             @media (max-width: 768px) {
                 width: 50%;
+            }
+
+            img {
+                width: 100%;
             }
         }
 
