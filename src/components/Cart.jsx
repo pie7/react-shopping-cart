@@ -9,7 +9,8 @@ import Form from "./Form";
 const CartContainer = styled.div`
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 100%;
+    max-width: 960px;
     padding: 32px;
     box-sizing: border-box;
     overflow: hidden;
