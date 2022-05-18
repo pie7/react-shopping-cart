@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Overview
 
 Simple Shopping Cart with Product Page
@@ -9,6 +7,7 @@ Simple Shopping Cart with Product Page
 - Product Page
 - Cart Page
 - Add/Update/Delete Product
+- Search Product
 
 ### `Web APIs`
 
